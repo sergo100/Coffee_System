@@ -136,7 +136,10 @@ def import_products():
         return redirect(url_for('dashboard'))
     df = pd.read_csv('csv/товары.csv')
     for _, row in df.iterrows():
-        p = Product(name=row['name'], producer=row['producer'], unit=row['unit'], price=row['price'], short_desc=row.get('short_desc',''), full_desc=row.get('full_desc',''))
+        p = Product(
+            name=row['name'], producer=row['producer'], unit=row['unit'], 
+            price=row['price'], short_desc=row.get('short_desc',''), full_desc=row.get('full_desc','')
+        )
         db.session.add(p)
     db.session.commit()
     flash("Товары импортированы")
@@ -150,7 +153,10 @@ def import_clients():
         return redirect(url_for('dashboard'))
     df = pd.read_csv('csv/клиенты.csv')
     for _, row in df.iterrows():
-        c = Client(fio=row['fio'], email=row['email'], address=row['address'], phone=row['phone'], note=row.get('note',''))
+        c = Client(
+            fio=row['fio'], email=row['email'], address=row['address'], 
+            phone=row['phone'], note=row.get('note','')
+        )
         db.session.add(c)
     db.session.commit()
     flash("Клиенты импортированы")
@@ -169,8 +175,10 @@ def init_admin():
         db.session.add(m2)
         db.session.commit()
 
+# ----------------- ЗАПУСК -----------------
 if __name__ == '__main__':
-    if not os.path.exists('database.db'):
-        db.create_all()
-        init_admin()
+    with app.app_context():  # <<< Обёртка контекста приложения
+        if not os.path.exists('database.db'):
+            db.create_all()
+            init_admin()
     app.run(debug=True)

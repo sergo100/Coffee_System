@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Товары</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+</head>
+<body>
+<h2>Товары</h2>
+<a href="{{ url_for('dashboard') }}">Главная</a> | 
+<a href="{{ url_for('import_products') }}">Импорт CSV</a> |
+<a href="{{ url_for('logout') }}">Выйти</a>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Наименование</th>
+        <th>Производитель</th>
+        <th>Ед.</th>
+        <th>Цена</th>
+        <th>Краткое описание</th>
+    </tr>
+    {% for p in products %}
+    <tr>
+        <td>{{ p.id }}</td>
+        <td>{{ p.name }}</td>
+        <td>{{ p.producer }}</td>
+        <td>{{ p.unit }}</td>
+        <td>{{ p.price }}</td>
+        <td>{{ p.short_desc }}</td>
+    </tr>
+    {% endfor %}
+</table>
+</body>
+</html>

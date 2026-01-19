@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Dashboard</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<h2>Главная</h2>
+<p>Всего заказов: {{ total_orders }}</p>
+<p>Общая сумма: {{ sum_orders }}</p>
+<a href="{{ url_for('products') }}">Товары</a> |
+<a href="{{ url_for('clients') }}">Клиенты</a> |
+<a href="{{ url_for('users') }}">Пользователи</a> |
+<a href="{{ url_for('orders') }}">Заказы</a> |
+<a href="{{ url_for('logout') }}">Выйти</a>
+</body>
+</html>

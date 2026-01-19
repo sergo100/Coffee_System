@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Заказы</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+</head>
+<body>
+<h2>Заказы</h2>
+<a href="{{ url_for('dashboard') }}">Главная</a> |
+<a href="{{ url_for('logout') }}">Выйти</a>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Клиент</th>
+        <th>Создал</th>
+        <th>Статус</th>
+        <th>Дата создания</th>
+        <th>Дата отгрузки</th>
+    </tr>
+    {% for o in orders %}
+    <tr>
+        <td>{{ o.id }}</td>
+        <td>{{ o.client_id }}</td>
+        <td>{{ o.user_id }}</td>
+        <td>{{ o.status }}</td>
+        <td>{{ o.created_at.strftime("%Y-%m-%d %H:%M") }}</td>
+        <td>{% if o.shipped_at %}{{ o.shipped_at.strftime("%Y-%m-%d %H:%M") }}{% else %}-{% endif %}</td>
+    </tr>
+    {% endfor %}
+</table>
+</body>
+</html>

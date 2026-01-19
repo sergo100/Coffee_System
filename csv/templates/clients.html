@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Клиенты</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+</head>
+<body>
+<h2>Клиенты</h2>
+<a href="{{ url_for('dashboard') }}">Главная</a> | 
+<a href="{{ url_for('import_clients') }}">Импорт CSV</a> |
+<a href="{{ url_for('logout') }}">Выйти</a>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>ФИО</th>
+        <th>Email</th>
+        <th>Адрес</th>
+        <th>Телефон</th>
+        <th>Пометка</th>
+    </tr>
+    {% for c in clients %}
+    <tr>
+        <td>{{ c.id }}</td>
+        <td>{{ c.fio }}</td>
+        <td>{{ c.email }}</td>
+        <td>{{ c.address }}</td>
+        <td>{{ c.phone }}</td>
+        <td>{{ c.note }}</td>
+    </tr>
+    {% endfor %}
+</table>
+</body>
+</html>

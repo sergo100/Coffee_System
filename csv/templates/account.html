@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Аккаунт</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+</head>
+<body>
+<h2>Мой аккаунт</h2>
+<a href="{{ url_for('dashboard') }}">Главная</a> | 
+<a href="{{ url_for('logout') }}">Выйти</a>
+
+<p>ФИО: {{ current_user.fio }}</p>
+<p>Email: {{ current_user.email }}</p>
+<p>Логин: {{ current_user.login }}</p>
+<p>Роль: {{ current_user.role }}</p>
+
+<h3>Сменить пароль</h3>
+<form method="POST" action="/change_password">
+    <input type="password" name="current_password" placeholder="Текущий пароль"><br>
+    <input type="password" name="new_password" placeholder="Новый пароль"><br>
+    <input type="password" name="confirm_password" placeholder="Подтвердить новый пароль"><br>
+    <button type="submit">Сменить</button>
+</form>
+</body>
+</html>

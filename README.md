@@ -67,7 +67,7 @@ coffee_system/
 
 ```powershell
 python -m pip install --upgrade pip
-pip install flask 
+pip install -r requirements.txt
 ```
 Если Python не видит команды pip, убедитесь, что путь к скриптам добавлен в PATH или используйте python -m pip install ....
 
